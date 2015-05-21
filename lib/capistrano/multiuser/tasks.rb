@@ -26,7 +26,7 @@ Capistrano::Configuration.instance.load do
       chmod
     end
 
-    after 'deploy:finalize_update', 'multiuser:default'
+    after 'deploy:symlink', 'multiuser:default'
 
   end
 
