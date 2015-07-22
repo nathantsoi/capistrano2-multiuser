@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
   gem.name          = 'capistrano2-multiuser'
-  gem.version       = '0.0.2'
+  gem.version       = '0.0.3'
   gem.authors       = ['Nathan Tsoi']
   gem.email         = ['nathan@vertile.com']
   gem.description   = %q{Capistrano2 tasks for multiuser deployment configuration.}

@@ -13,12 +13,13 @@ Capistrano::Configuration.instance.load do
 
     desc 'chown the deploy directory'
     task :chown, roles: :app do
-      run "chown -R #{ENV['DEPLOY_USER']}:#{fetch(:deploy_group)} #{fetch(:deploy_to)}"
+      # we can only update the files we own, if everyone does this though, it should be fine
+      run "chgrp -R #{fetch(:deploy_group)} #{fetch(:deploy_to)}; true"
     end
 
     desc 'chmod the deploy directory'
     task :chmod, roles: :app do
-      run "chmod -R 2775 #{fetch(:deploy_to)}"
+      run "chmod -R 2775 #{fetch(:deploy_to)}; true"
     end
 
     task :default do
