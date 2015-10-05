@@ -14,7 +14,7 @@ Capistrano::Configuration.instance.load do
     desc 'chown the deploy directory'
     task :chown, roles: :app do
       # we can only update the files we own, if everyone does this though, it should be fine
-      run "sudo /bin/chgrp -R #{fetch(:deploy_group)} #{fetch(:deploy_to)}"
+      run "sudo /bin/chown -R #{fetch(:user)}:#{fetch(:deploy_group)} #{fetch(:deploy_to)}"
     end
 
     desc 'chmod the deploy directory'
@@ -27,6 +27,7 @@ Capistrano::Configuration.instance.load do
       chmod
     end
 
+    before 'deploy', 'multiuser:default'
     after 'deploy:symlink', 'multiuser:default'
 
   end
