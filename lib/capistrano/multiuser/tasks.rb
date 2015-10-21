@@ -6,7 +6,7 @@ Capistrano::Configuration.instance.load do
     set(name, *args, &block) unless exists?(name)
   end
 
-  set_default(:user) { ENV['DEPLOY_USER'] }
+  set_default(:user) { ENV['DEPLOY_USER']||`whoami` }
   set_default(:deploy_group) { ENV['DEPLOY_GROUP']||"#{fetch(:application)}-deployers" }
 
   namespace :multiuser do
